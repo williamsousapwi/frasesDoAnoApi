@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FrasesDoAnoApi</name>
+    </assembly>
+    <members>
+        <member name="T:FrasesDoAnoApi.Controllers.FrasesDoanoController">
+            <summary>
+             Class para o domínio
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.FrasesDoanoController.#ctor(FrasesDoAnoApi.Dominio.FrasesDoAnoDominio)">
+            <summary>
+            Faz a conexão com o domínio
+            </summary>
+            <param name="frasesDoAnoDominio"></param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.FrasesDoanoController.ConsultarFrase(System.String)">
+            <summary>
+            Consulta frase por nome
+            </summary>
+            <param name="frase">frase para efetuar a consulta</param>
+            <returns> Retorna o Id, frase, observação, inclusão, alteracao e se está ativo</returns>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.FrasesDoanoController.ConsultarFrasePorId(System.Int32)">
+            <summary>
+            Consulta frase por id
+            </summary>
+            <param name="id"> código para efetuar a consulta</param>
+            <returns>Retorna o Id, frase, observação, inclusão, alteracao e se está ativo</returns>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.FrasesDoanoController.DeletarFrase(System.Int32)">
+            <summary>
+            Deleta frase por id
+            </summary>
+            <param name="id">código para efetuar a exclusão/delete.</param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.FrasesDoanoController.CadastrarFrase(FrasesDoAnoApi.Controllers.Modelos.FraseRequest)">
+            <summary>
+            Cadastra frase
+            </summary>
+            <param name="frase">Frase e observação a ser cadastrado</param>
+            <returns>Se tudo der  certo, retorna 200.</returns>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.FrasesDoanoController.AlterarFrases(System.Int32,FrasesDoAnoApi.Controllers.Modelos.FraseRequest)">
+            <summary>
+            Altera a frase cadastrada
+            </summary>
+            <param name="id">identifica qual frase cadastrada a ser alterada</param>
+            <param name="frase"> Altera a frase com base no que for informado.</param>
+            <returns>Se tudo der certo, código 200.</returns>
+        </member>
+        <member name="T:FrasesDoAnoApi.Controllers.Modelos.FraseRequest">
+            <summary>
+            Classe para request
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseRequest.Frase">
+            <summary>
+            Frase informada
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseRequest.Observacao">
+            <summary>
+            Observacao informada
+            </summary>
+        </member>
+        <member name="T:FrasesDoAnoApi.Controllers.Modelos.FraseResponse">
+            <summary>
+            Resposta para o usuário
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Id">
+            <summary>
+            Id/código, para identificar o cadastro.
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Frase">
+            <summary>
+            informa a frase cadastrada ou que irá ser cadastrada.
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Observacao">
+            <summary>
+            informa a observacao cadastrada ou que irá ser cadastrada.
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Inclusao">
+            <summary>
+            Informa data de inclusão
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Alteracao">
+            <summary>
+             Informa data de alteração
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Inativo">
+            <summary>
+            Campo para informar se está inativo ou não.
+            </summary>
+        </member>
+        <member name="T:FrasesDoAnoApi.Dados.Configuracao.DbContextSql">
+            <summary>
+            Classe de acesso ao banco (DbContext)
+            </summary> 
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Configuracao.DbContextSql.StringConexaoBd">
+            <summary>
+            String de conexão com o banco de dados
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Configuracao.DbContextSql.Tb_frasedoano">
+            <summary>
+            Referênciando a tb_frasedoano
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dados.Configuracao.DbContextSql.#ctor(System.String)">
+            <summary>
+            Construtor da classe
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dados.Configuracao.DbContextSql.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Configuração para usar string de conexão
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="T:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano">
+            <summary>
+            Tabela principal
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Pk_id">
+            <summary>
+            Pk_id chave unique
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Ds_frase">
+            <summary>
+            Frase
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Ds_observacao">
+            <summary>
+            Comentários adicionais
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Tg_inativo">
+            <summary>
+            Se está inatido 1 = true/ 0 = false
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Dh_inclusao">
+            <summary>
+            Data de inclusão do cadastro
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Dh_alteracao">
+            <summary>
+            Data de alteração do cadastro
+            </summary>
+        </member>
+        <member name="T:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio">
+            <summary>
+            Classe que faz as consultas no banco
+            </summary>
+        </member>
+        <member name="F:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio._dbContext">
+            <summary>
+            Contexto para acesso ao banco de dados
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.#ctor(FrasesDoAnoApi.Dados.Configuracao.DbContextSql)">
+            <summary>
+            Construtor da classe
+            </summary>
+            <param name="dbContextSql">Contexto</param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.ConsultarFrase(System.String)">
+            <summary>
+            Pesquisa por frase
+            </summary>
+            <param name="frase">Recebe uma frase do tipo string</param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.ConsultarPorId(System.Int32)">
+            <summary>
+            Pesquisa por id.
+            </summary>
+            <param name="id"> Id informado na url para consulta.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.DeletarFrase(System.Int32)">
+            <summary>
+            Deleta com base no id.
+            </summary>
+            <param name="id"> id informado na url para encontrar e deletar a frase.</param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.AdicionarFrase(FrasesDoAnoApi.Controllers.Modelos.FraseRequest)">
+            <summary>
+            Adiciona frase, passando a frase e observação.
+            </summary>
+            <param name=" cadastroFrase"> Conjunto de informações para cadastro da frase.</param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.AlterarFrase(System.Int32,FrasesDoAnoApi.Controllers.Modelos.FraseRequest)">
+            <summary>
+            Altera a frase, pegando id existente.
+            </summary>
+            <param name="id">Id para indicar a frase a ser alterada.</param>
+            <param name="alterarFrase">Conjunto de informaçoes para alterar a frase.</param>
+        </member>
+        <member name="T:FrasesDoAnoApi.Program">
+            <summary>
+            Classe inicial da API
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Program.Main(System.String[])">
+            <summary>
+            Método inicial chamado ao iniciar a aplicação
+            </summary>
+            <param name="args">Parametros de inicialização da aplicação</param>
+        </member>
+        <member name="M:FrasesDoAnoApi.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Host Builder da API
+            </summary>
+            <param name="args">Dados para a geração do HostBuilder</param>
+            <returns>Uma implementação do IHostBuilder</returns>
+        </member>
+        <member name="T:FrasesDoAnoApi.Startup">
+            Starting configuration
+        </member>
+        <member name="M:FrasesDoAnoApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Configuração de ínicio da aplicação.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:FrasesDoAnoApi.Startup.Configuration">
+            <summary>
+            Método de configuração.
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            This method gets called by the runtime. Use this method to add services to the container.
+        </member>
+        <member name="M:FrasesDoAnoApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        </member>
+    </members>
+</doc>
