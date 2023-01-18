@@ -79,6 +79,7 @@ namespace FrasesDoAnoApi
 #endif
 
             app.UseRouting();
+            app.UseCors(cors => cors.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthentication();
             app.UseAuthorization();
