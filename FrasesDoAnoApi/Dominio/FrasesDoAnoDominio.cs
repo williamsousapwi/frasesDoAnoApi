@@ -2,6 +2,7 @@
 using FrasesDoAnoApi.Dados.Configuracao;
 using FrasesDoAnoApi.Dados.Modelos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.IdentityModel.Tokens;
 
@@ -33,19 +34,19 @@ namespace FrasesDoAnoApi.Dominio
         public List<FraseResponse> ConsultarFrase(string frase)
         {
             var frasePorNome = _dbContext.Tb_frasedoano
-                .Where(w => 
-                       w.Ds_frase.Contains(frase.Trim()))
-                       .ToList()
                 .Select(s => new FraseResponse()
                 {
                     Id = s.Pk_id,
-                    Frase= s.Ds_frase,
-                    Observacao= s.Ds_observacao,
+                    Frase = s.Ds_frase,
+                    Observacao = s.Ds_observacao,
                     Inclusao = s.Dh_inclusao,
                     Alteracao = s.Dh_alteracao,
                     Inativo = s.Tg_inativo
                 });
-           
+
+            if (!string.IsNullOrWhiteSpace(frase))
+                frasePorNome = frasePorNome.Where(w => w.Frase.Contains(frase));
+
             return frasePorNome.ToList();   
         }
         /// <summary>
