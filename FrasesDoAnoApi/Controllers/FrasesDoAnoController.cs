@@ -94,7 +94,7 @@ namespace FrasesDoAnoApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest($"erro ao cadastrar a frase. detalhes:  {ex.Message}");
+                return BadRequest($"{ex.Message}");
             }
         }
         /// <summary>

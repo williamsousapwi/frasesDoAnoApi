@@ -71,7 +71,7 @@ namespace FrasesDoAnoApi.Dominio
 
             if (frasePorId is null)
             {
-                throw new Exception("Cód. não encontrado.");
+                throw new Exception("Frase não encontrada, tente editar uma frase existente.");
             }
             return frasePorId;
         }
@@ -121,7 +121,7 @@ namespace FrasesDoAnoApi.Dominio
             var dadosExistentes = _dbContext.Tb_frasedoano.Find(id);
             if (dadosExistentes is null)
             {
-                throw new Exception("Cód. não encontrado.");
+                throw new Exception("Frase não encontrada, tente editar uma frase existente.");
             }
 
             if (string.IsNullOrWhiteSpace(dadosExistentes.Ds_frase))
