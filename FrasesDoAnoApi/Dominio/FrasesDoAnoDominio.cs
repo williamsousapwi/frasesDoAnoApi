@@ -34,21 +34,23 @@ namespace FrasesDoAnoApi.Dominio
         /// <param name="frase">Recebe uma frase do tipo string</param>
         public List<FraseResponse> ConsultarFrase(string frase)
         {
-            var frasePorNome = _dbContext.Tb_frasedoano
-                .Select(s => new FraseResponse()
-                {
-                    Id = s.Pk_id,
-                    Frase = s.Ds_frase,
-                    Observacao = s.Ds_observacao,
-                    Inclusao = s.Dh_inclusao,
-                    Alteracao = s.Dh_alteracao,
-                    Inativo = s.Tg_inativo
-                });
-
+            var query = from frases in _dbContext.Tb_frasedoano
+                        join usuarios in _dbContext.Tb_usuario on frases.Fk_owner equals usuarios.Pk_id
+                        select new FraseResponse()
+                        {
+                            Id              = frases.Pk_id,
+                            idUsuario       = frases.Fk_owner,
+                            Frase           = frases.Ds_frase,
+                            Observacao      = frases.Ds_observacao,
+                            Inclusao        = frases.Dh_inclusao,
+                            Alteracao       = frases.Dh_alteracao,
+                            Inativo         = frases.Tg_inativo,
+                            Criador  = usuarios.Ds_nome                           
+                        };
             if (!string.IsNullOrWhiteSpace(frase))
-                frasePorNome = frasePorNome.Where(w => w.Frase.Contains(frase));
+            query = query.Where(w => w.Frase.Contains(frase));
 
-            return frasePorNome.ToList();   
+            return query.ToList();
         }
         /// <summary>
         /// Pesquisa por id.

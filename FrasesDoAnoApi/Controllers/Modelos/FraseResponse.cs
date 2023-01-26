@@ -10,6 +10,10 @@
         /// </summary>
         public int Id { get; set; }
         /// <summary>
+        /// Id do fk_owner
+        /// </summary>
+        public int idUsuario { get; set; }
+        /// <summary>
         /// informa a frase cadastrada ou que irá ser cadastrada.
         /// </summary>
         public string Frase { get; set; } = "";
@@ -29,6 +33,9 @@
         /// Campo para informar se está inativo ou não.
         /// </summary>
         public bool Inativo { get; set; }
-
+        /// <summary>
+        /// Campo para informar o nome do usuário
+        /// </summary>
+        public string Criador { get; set; } = "";
     }
 }

@@ -75,6 +75,11 @@
             Id/código, para identificar o cadastro.
             </summary>
         </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.idUsuario">
+            <summary>
+            Id do fk_owner
+            </summary>
+        </member>
         <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Frase">
             <summary>
             informa a frase cadastrada ou que irá ser cadastrada.
@@ -98,6 +103,11 @@
         <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Inativo">
             <summary>
             Campo para informar se está inativo ou não.
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.Criador">
+            <summary>
+            Campo para informar o nome do usuário
             </summary>
         </member>
         <member name="T:FrasesDoAnoApi.Controllers.Modelos.UserRequest">
@@ -274,6 +284,11 @@
         <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Dh_alteracao">
             <summary>
             Data de alteração do cadastro
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Dados.Modelos.Tb_frasedoano.Fk_owner">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:FrasesDoAnoApi.Dados.Modelos.Tb_usuario">

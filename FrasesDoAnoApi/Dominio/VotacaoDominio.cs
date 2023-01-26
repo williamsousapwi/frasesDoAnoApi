@@ -1,6 +1,7 @@
 ﻿using FrasesDoAnoApi.Controllers.Modelos;
 using FrasesDoAnoApi.Dados.Configuracao;
 using FrasesDoAnoApi.Dados.Modelos;
+using System.Threading.Tasks.Dataflow;
 
 namespace FrasesDoAnoApi.Dominio
 {
@@ -47,6 +48,7 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception("Frase não encontrada");
             }
+            
             var frase = new Tb_votacao()
             {
                 Fk_frasedoano = votacao.Id_frasedoano,

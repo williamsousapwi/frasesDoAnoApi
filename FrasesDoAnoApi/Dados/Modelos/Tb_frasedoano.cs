@@ -33,5 +33,10 @@ namespace FrasesDoAnoApi.Dados.Modelos
         /// Data de alteração do cadastro
         /// </summary>
         public DateTime ?Dh_alteracao { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Fk_owner { get; set; }
     }
 }
