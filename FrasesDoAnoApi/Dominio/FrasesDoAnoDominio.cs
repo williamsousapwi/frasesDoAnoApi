@@ -45,6 +45,7 @@ namespace FrasesDoAnoApi.Dominio
                         {
                             Id              = frases.Pk_id,
                             idUsuario       = frases.Fk_owner ?? 0,
+                            idVotacao       = votos.Pk_id,
                             Frase           = frases.Ds_frase,
                             Observacao      = frases.Ds_observacao,
                             Inclusao        = frases.Dh_inclusao,

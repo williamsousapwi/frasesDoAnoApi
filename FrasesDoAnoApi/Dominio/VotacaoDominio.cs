@@ -29,11 +29,13 @@ namespace FrasesDoAnoApi.Dominio
         /// </summary>
         /// <param name="votacao">recebe fk do: frasedoano e fk_usuario.</param>
         public void VotarNaFrase(VotarRequest votacao)
+
         {
+
             var verificarFrase = _dbContext.Tb_frasedoano
                 .FirstOrDefault(f => 
                                 f.Pk_id
-                                .Equals(votacao.Id_frasedoano));
+                                .Equals(votacao.IdFrase));
 
             var verificarUsuario = _dbContext.Tb_usuario
                 .FirstOrDefault(f =>
@@ -51,7 +53,7 @@ namespace FrasesDoAnoApi.Dominio
             
             var frase = new Tb_votacao()
             {
-                Fk_frasedoano = votacao.Id_frasedoano,
+                Fk_frasedoano = votacao.IdFrase,
                 Fk_usuario = votacao.Id_usuario,
                 Dh_inclusao= DateTime.Now
             };
