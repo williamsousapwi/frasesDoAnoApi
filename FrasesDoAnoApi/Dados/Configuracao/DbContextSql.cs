@@ -17,6 +17,15 @@ namespace FrasesDoAnoApi.Dados.Configuracao
         /// </summary>
         public DbSet<Tb_frasedoano> Tb_frasedoano { get; set; }
         /// <summary>
+        /// Referênciando a tb_usuario
+        /// </summary>
+        public DbSet<Tb_usuario> Tb_usuario { get; set; }
+        /// <summary>
+        /// Referênciando a tb_votacao
+        /// </summary>
+        public DbSet<Tb_votacao> Tb_votacao { get; set; }
+
+        /// <summary>
         /// Construtor da classe
         /// </summary>
         public DbContextSql(string stringConexao)
@@ -37,5 +46,6 @@ namespace FrasesDoAnoApi.Dados.Configuracao
         {
             optionsBuilder.UseSqlServer(StringConexaoBd);
         }
+
     }
 }

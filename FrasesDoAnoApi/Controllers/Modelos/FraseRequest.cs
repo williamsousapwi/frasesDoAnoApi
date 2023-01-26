@@ -1,7 +1,7 @@
 ﻿namespace FrasesDoAnoApi.Controllers.Modelos
 {
     /// <summary>
-    /// Classe para request
+    /// Classe para request da frase
     /// </summary>
     public class FraseRequest
     {

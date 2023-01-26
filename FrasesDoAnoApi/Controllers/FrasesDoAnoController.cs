@@ -116,6 +116,7 @@ namespace FrasesDoAnoApi.Controllers
                 return BadRequest($"Erro ao alterar as informações. {ex.Message}");
             }
         }
+        
     }
 
 }

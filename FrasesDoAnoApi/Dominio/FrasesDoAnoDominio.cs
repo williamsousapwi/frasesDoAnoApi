@@ -1,6 +1,7 @@
 ﻿using FrasesDoAnoApi.Controllers.Modelos;
 using FrasesDoAnoApi.Dados.Configuracao;
 using FrasesDoAnoApi.Dados.Modelos;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
@@ -136,5 +137,11 @@ namespace FrasesDoAnoApi.Dominio
    
             _dbContext.SaveChanges();   
         }
+
+       
+        
+        
+
+
     }
 }

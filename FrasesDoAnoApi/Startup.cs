@@ -51,6 +51,9 @@ namespace FrasesDoAnoApi
             services.AddScoped(c =>
                 new DbContextSql(Configuration.GetConnectionString("DefaultConnection")?? ""));
             services.AddScoped<FrasesDoAnoDominio>();
+            services.AddScoped<UsuarioDominio>();
+            services.AddScoped<VotacaoDominio>();
+
         }
 
 
