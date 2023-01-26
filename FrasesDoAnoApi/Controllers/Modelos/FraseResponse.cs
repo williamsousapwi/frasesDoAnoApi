@@ -37,5 +37,9 @@
         /// Campo para informar o nome do usuário
         /// </summary>
         public string Criador { get; set; } = "";
+        /// <summary>
+        /// 
+        /// </summary>
+        public int idVotacao { get; set; }
     }
 }

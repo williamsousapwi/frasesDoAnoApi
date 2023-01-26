@@ -56,8 +56,8 @@ namespace FrasesDoAnoApi.Controllers
         {
             try
             {
-                _usuarioDominio.LoginUsuario(login);
-                return Ok();
+                
+                return Ok(_usuarioDominio.LoginUsuario(login));
             }
             catch (Exception ex)
             {

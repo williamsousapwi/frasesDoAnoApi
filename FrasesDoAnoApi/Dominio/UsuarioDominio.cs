@@ -89,7 +89,7 @@ namespace FrasesDoAnoApi.Dominio
         /// Método de login, que verifica o login e senha informados.
         /// </summary>
         /// <param name="loginUsuario"> login e senha</param>
-        public void LoginUsuario(UserRequest loginUsuario)
+        public int LoginUsuario(UserRequest loginUsuario)
         {
             var verificarUsuario = _dbContext.Tb_usuario
                 .FirstOrDefault(w => w.Ds_login.Equals(loginUsuario.Login) && w.Ds_senha.Equals(loginUsuario.Senha));
@@ -98,6 +98,8 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception("Usuario não encontrado ou credenciais inválidas.");
             };
+
+            return verificarUsuario.Pk_id;
 
         }
     }

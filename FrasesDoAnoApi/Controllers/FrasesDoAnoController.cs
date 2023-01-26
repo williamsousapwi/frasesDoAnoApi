@@ -37,8 +37,9 @@ namespace FrasesDoAnoApi.Controllers
         public ActionResult<List<FraseResponse>> ConsultarFrase([FromQuery] string? frase="")
         {
             try
-            {              
-                return _frasesDoAnoDominio.ConsultarFrase(frase);
+            {
+                var aaa = HttpContext.Request.Headers["IdUsuarioLogado"];
+                return _frasesDoAnoDominio.ConsultarFrase(frase, );
             }
             catch(Exception ex)
             {

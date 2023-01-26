@@ -37,6 +37,6 @@ namespace FrasesDoAnoApi.Dados.Modelos
         /// <summary>
         /// 
         /// </summary>
-        public int Fk_owner { get; set; }
+        public int? Fk_owner { get; set; }
     }
 }
