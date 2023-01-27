@@ -110,6 +110,11 @@
             Campo para informar o nome do usuário
             </summary>
         </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseResponse.idVotacao">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:FrasesDoAnoApi.Controllers.Modelos.UserRequest">
             <summary>
             Classe para request
@@ -155,12 +160,7 @@
             Classe para request da votação
             </summary>
         </member>
-        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarRequest.Id_usuario">
-            <summary>
-            fk do usuário.
-            </summary>
-        </member>
-        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarRequest.Id_frasedoano">
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarRequest.IdFrase">
             <summary>
             id do fk_frasedoano
             </summary>
@@ -361,7 +361,7 @@
             Contexto para acesso ao banco de dados
             </summary>
         </member>
-        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.#ctor(FrasesDoAnoApi.Dados.Configuracao.DbContextSql)">
+        <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.#ctor(FrasesDoAnoApi.Dados.Configuracao.DbContextSql,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
             Construtor da classe
             </summary>
@@ -444,7 +444,7 @@
             Contexto para acesso ao banco de dados
             </summary>
         </member>
-        <member name="M:FrasesDoAnoApi.Dominio.VotacaoDominio.#ctor(FrasesDoAnoApi.Dados.Configuracao.DbContextSql)">
+        <member name="M:FrasesDoAnoApi.Dominio.VotacaoDominio.#ctor(FrasesDoAnoApi.Dados.Configuracao.DbContextSql,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
             Construtor da classe
             </summary>
@@ -500,6 +500,17 @@
         </member>
         <member name="M:FrasesDoAnoApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        </member>
+        <member name="T:FrasesDoAnoApi.Utils.HttpHelper">
+            <summary>
+            Classe de auxílio.
+            </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Utils.HttpHelper.ObterUsuarioLogado">
+            <summary>
+            Id do usuário logado, recebido pelo header.
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

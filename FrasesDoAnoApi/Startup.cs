@@ -54,7 +54,8 @@ namespace FrasesDoAnoApi
             services.AddScoped<FrasesDoAnoDominio>();
             services.AddScoped<UsuarioDominio>();
             services.AddScoped<VotacaoDominio>();
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor, HttpHelper>();
+            services.AddHttpContextAccessor();
+
         }
 
 
