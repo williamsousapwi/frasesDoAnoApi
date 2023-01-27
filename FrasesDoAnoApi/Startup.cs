@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using FrasesDoAnoApi.Dominio;
 using Microsoft.EntityFrameworkCore;
 using FrasesDoAnoApi.Dados.Configuracao;
+using FrasesDoAnoApi.Utils;
 
 namespace FrasesDoAnoApi
 {
@@ -53,7 +54,7 @@ namespace FrasesDoAnoApi
             services.AddScoped<FrasesDoAnoDominio>();
             services.AddScoped<UsuarioDominio>();
             services.AddScoped<VotacaoDominio>();
-
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor, HttpHelper>();
         }
 
 

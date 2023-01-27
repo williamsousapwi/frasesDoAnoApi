@@ -1,6 +1,7 @@
 ﻿using FrasesDoAnoApi.Controllers.Modelos;
 using FrasesDoAnoApi.Dados.Configuracao;
 using FrasesDoAnoApi.Dados.Modelos;
+using FrasesDoAnoApi.Utils;
 using System.Threading.Tasks.Dataflow;
 
 namespace FrasesDoAnoApi.Dominio
@@ -14,15 +15,19 @@ namespace FrasesDoAnoApi.Dominio
         /// Contexto para acesso ao banco de dados
         /// </summary>
         private readonly DbContextSql _dbContext;
+        private readonly int _idUsuarioLogado;
 
         /// <summary>
         /// Construtor da classe
         /// </summary>
         /// <param name="dbContextSql">Contexto</param>
-        public VotacaoDominio(DbContextSql dbContextSql)
+        public VotacaoDominio(DbContextSql dbContextSql, IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContextSql;
+            HttpHelper httpHelper = new HttpHelper(httpContextAccessor);
+            _idUsuarioLogado = httpHelper.ObterUsuarioLogado();
         }
+
 
         /// <summary>
         /// Método para votar na farase
@@ -30,8 +35,7 @@ namespace FrasesDoAnoApi.Dominio
         /// <param name="votacao">recebe fk do: frasedoano e fk_usuario.</param>
         public void VotarNaFrase(VotarRequest votacao)
 
-        {
-
+        { 
             var verificarFrase = _dbContext.Tb_frasedoano
                 .FirstOrDefault(f => 
                                 f.Pk_id
@@ -40,7 +44,7 @@ namespace FrasesDoAnoApi.Dominio
             var verificarUsuario = _dbContext.Tb_usuario
                 .FirstOrDefault(f =>
                                 f.Pk_id
-                                .Equals(votacao.Id_usuario));
+                                .Equals(_idUsuarioLogado));
 
             if (verificarUsuario is null)
             {
@@ -54,7 +58,7 @@ namespace FrasesDoAnoApi.Dominio
             var frase = new Tb_votacao()
             {
                 Fk_frasedoano = votacao.IdFrase,
-                Fk_usuario = votacao.Id_usuario,
+                Fk_usuario = _idUsuarioLogado,
                 Dh_inclusao= DateTime.Now
             };
             _dbContext.Tb_votacao.Add(frase);

@@ -1,6 +1,8 @@
 ﻿using FrasesDoAnoApi.Controllers.Modelos;
 using FrasesDoAnoApi.Dados.Configuracao;
 using FrasesDoAnoApi.Dados.Modelos;
+using FrasesDoAnoApi.Utils;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
@@ -18,27 +20,33 @@ namespace FrasesDoAnoApi.Dominio
         /// Contexto para acesso ao banco de dados
         /// </summary>
         private readonly DbContextSql _dbContext;
+        private readonly int _idUsuarioLogado;
+
 
         /// <summary>
         /// Construtor da classe
         /// </summary>
         /// <param name="dbContextSql">Contexto</param>
-        public FrasesDoAnoDominio(DbContextSql dbContextSql)
+        public FrasesDoAnoDominio(DbContextSql dbContextSql, IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContextSql;
+            HttpHelper httpHelper = new HttpHelper(httpContextAccessor);
+            _idUsuarioLogado = httpHelper.ObterUsuarioLogado();
+
+
         }
 
         /// <summary>
         /// Pesquisa por frase
         /// </summary>
         /// <param name="frase">Recebe uma frase do tipo string</param>
-        public List<FraseResponse> ConsultarFrase(string frase, int idUsuarioLogado)
+        public List<FraseResponse> ConsultarFrase(string frase)
         {
             var query = from frases in _dbContext.Tb_frasedoano
                         join usuarios in _dbContext.Tb_usuario on frases.Fk_owner equals usuarios.Pk_id into _usuarios
                         from usuarios in _usuarios.DefaultIfEmpty()
 
-                        join votos in _dbContext.Tb_votacao on new { IdFrase = frases.Pk_id, IdUsuario = idUsuarioLogado }  equals new { IdFrase = votos.Fk_frasedoano ,IdUsuario = votos.Fk_usuario} into _votos
+                        join votos in _dbContext.Tb_votacao on new { IdFrase = frases.Pk_id, IdUsuario = _idUsuarioLogado }  equals new { IdFrase = votos.Fk_frasedoano ,IdUsuario = votos.Fk_usuario} into _votos
                         from votos in _votos.DefaultIfEmpty()
 
                         select new FraseResponse()

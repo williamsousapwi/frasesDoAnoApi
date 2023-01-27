@@ -38,15 +38,7 @@ namespace FrasesDoAnoApi.Controllers
         {
             try
             {
-                int idUsuarioLogado;
-                var aaa = HttpContext.Request.Headers["IdUsuarioLogado"].FirstOrDefault();
-                int.TryParse(aaa, out idUsuarioLogado);
-                if (idUsuarioLogado == 0)
-                {
-                    throw new Exception("Id do usuário logado inválido.");
-                }
-
-                return _frasesDoAnoDominio.ConsultarFrase(frase, idUsuarioLogado);
+                return _frasesDoAnoDominio.ConsultarFrase(frase);
             }
             catch(Exception ex)
             {
