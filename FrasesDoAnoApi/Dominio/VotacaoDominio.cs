@@ -20,7 +20,8 @@ namespace FrasesDoAnoApi.Dominio
         /// <summary>
         /// Construtor da classe
         /// </summary>
-        /// <param name="dbContextSql">Contexto</param>
+        /// <param name="dbContextSql"></param>
+        /// <param name="httpContextAccessor"></param>
         public VotacaoDominio(DbContextSql dbContextSql, IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContextSql;
@@ -30,21 +31,18 @@ namespace FrasesDoAnoApi.Dominio
 
 
         /// <summary>
-        /// Método para votar na farase
+        /// Método para votar na frase
         /// </summary>
         /// <param name="votacao">recebe fk do: frasedoano e fk_usuario.</param>
         public void VotarNaFrase(VotarRequest votacao)
+        {
+            ValidarVoto(votacao.IdFrase);
 
-        { 
             var verificarFrase = _dbContext.Tb_frasedoano
-                .FirstOrDefault(f => 
-                                f.Pk_id
-                                .Equals(votacao.IdFrase));
+                .Find(votacao.IdFrase);
 
             var verificarUsuario = _dbContext.Tb_usuario
-                .FirstOrDefault(f =>
-                                f.Pk_id
-                                .Equals(_idUsuarioLogado));
+                .Find(_idUsuarioLogado);
 
             if (verificarUsuario is null)
             {
@@ -78,6 +76,13 @@ namespace FrasesDoAnoApi.Dominio
             }
             _dbContext.Remove(voto);
             _dbContext.SaveChanges();
+        }
+        private void ValidarVoto(int votoNovo)
+        {
+            var voto = _dbContext.Tb_votacao.FirstOrDefault(x => x.Fk_frasedoano.Equals(votoNovo) && x.Fk_usuario.Equals(_idUsuarioLogado));
+
+            if (voto is not null)
+                throw new Exception("Voto já cadastrado.");
         }
     }
     

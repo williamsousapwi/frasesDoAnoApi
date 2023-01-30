@@ -365,7 +365,8 @@
             <summary>
             Construtor da classe
             </summary>
-            <param name="dbContextSql">Contexto</param>
+            <param name="dbContextSql"></param>
+            <param name="httpContextAccessor"></param>
         </member>
         <member name="M:FrasesDoAnoApi.Dominio.FrasesDoAnoDominio.ConsultarFrase(System.String)">
             <summary>
@@ -448,11 +449,12 @@
             <summary>
             Construtor da classe
             </summary>
-            <param name="dbContextSql">Contexto</param>
+            <param name="dbContextSql"></param>
+            <param name="httpContextAccessor"></param>
         </member>
         <member name="M:FrasesDoAnoApi.Dominio.VotacaoDominio.VotarNaFrase(FrasesDoAnoApi.Controllers.Modelos.VotarRequest)">
             <summary>
-            Método para votar na farase
+            Método para votar na frase
             </summary>
             <param name="votacao">recebe fk do: frasedoano e fk_usuario.</param>
         </member>
@@ -505,6 +507,12 @@
             <summary>
             Classe de auxílio.
             </summary>
+        </member>
+        <member name="M:FrasesDoAnoApi.Utils.HttpHelper.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            http Helper, para acessar o que está no header
+            </summary>
+            <param name="httpContextAccessor"></param>
         </member>
         <member name="M:FrasesDoAnoApi.Utils.HttpHelper.ObterUsuarioLogado">
             <summary>

@@ -49,9 +49,9 @@ namespace FrasesDoAnoApi.Dominio
                 throw new Exception("Senha é obrigatória.");
             }
 
-            // A expressao regular para validar senha: Caractér especial, Letra maiúscula e minúscula, numero e no mínimo 8 caractéres.
-            if (!Regex.IsMatch(cadastroUsuario.Senha, "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$"))
-                throw new Exception("Senha inválida, deve conter:\n um caractér especial,\n letra maiúscula,\n letra minuscula ,\n um numero \n e no mínimo 8 caractéres.");
+            // A expressao regular para validar senha: Letra maiúscula, número e no mínimo 8 caractéres.
+            if (!Regex.IsMatch(cadastroUsuario.Senha, "^(?=.*?[0-9])(?=.*?[A-Z]).{6,}$"))
+                throw new Exception("Senha deve conter:\n letra maiúscula, um numero e no mínimo 6 caractéres.");
 
             cadastroUsuario.Login.ToLower();
             ValidarLogin(cadastroUsuario.Login);

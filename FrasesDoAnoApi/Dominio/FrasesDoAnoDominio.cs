@@ -22,11 +22,11 @@ namespace FrasesDoAnoApi.Dominio
         private readonly DbContextSql _dbContext;
         private readonly int _idUsuarioLogado;
 
-
         /// <summary>
         /// Construtor da classe
         /// </summary>
-        /// <param name="dbContextSql">Contexto</param>
+        /// <param name="dbContextSql"></param>
+        /// <param name="httpContextAccessor"></param>
         public FrasesDoAnoDominio(DbContextSql dbContextSql, IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContextSql;

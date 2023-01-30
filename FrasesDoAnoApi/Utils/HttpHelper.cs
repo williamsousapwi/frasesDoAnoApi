@@ -14,6 +14,10 @@ namespace FrasesDoAnoApi.Utils
     public class HttpHelper
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        /// <summary>
+        /// http Helper, para acessar o que está no header
+        /// </summary>
+        /// <param name="httpContextAccessor"></param>
         public HttpHelper(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
@@ -28,11 +32,7 @@ namespace FrasesDoAnoApi.Utils
             int idUsuarioLogado;
             var receberId = _httpContextAccessor.HttpContext.Request.Headers["IdUsuarioLogado"].FirstOrDefault();
             int.TryParse(receberId, out idUsuarioLogado);
-            if (idUsuarioLogado == 0)
-            {
-                throw new Exception("Id do usuário logado inválido.");
-            }
-
+         
             return idUsuarioLogado;
 
         }
