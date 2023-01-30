@@ -99,9 +99,9 @@ namespace FrasesDoAnoApi.Dominio
                          {
                              Frase = _fra.Max(m => m.fra.Ds_frase),
                              Observacao = _fra.Max(m => m.fra.Ds_observacao),
-                             Autor = _fra.Max(m => m.usu.Ds_nome),
+                             Criador = _fra.Max(m => m.usu.Ds_nome),
                              QtdVotos = _fra.Count(c => c.vot != null),
-                             Pk_id = _fra.Key.Pk_id
+                             Id = _fra.Key.Pk_id
                          }).ToList();
             return query;
         }
