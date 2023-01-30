@@ -38,11 +38,12 @@ namespace FrasesDoAnoApi.Controllers
             try
             {
                 _votacaoDominio.VotarNaFrase(votar);
+
                 return Ok();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                return BadRequest($"{ex.Message}"); 
+                return BadRequest($"{ex.Message}");
             }
         }
         /// <summary>
@@ -61,6 +62,19 @@ namespace FrasesDoAnoApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest($"Erro ao deletar a frase. Detalhes: {ex.Message}");
+            }
+        }
+
+        [HttpGet("ranking")]
+        public ActionResult<List<VotarResponse>> ContarVotos()
+        {
+            try
+            { 
+                return Ok(_votacaoDominio.ObterVotosFrase());
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

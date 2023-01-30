@@ -2,6 +2,7 @@
 using FrasesDoAnoApi.Dados.Configuracao;
 using FrasesDoAnoApi.Dados.Modelos;
 using FrasesDoAnoApi.Utils;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks.Dataflow;
 
 namespace FrasesDoAnoApi.Dominio
@@ -52,12 +53,12 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception("Frase não encontrada");
             }
-            
+
             var frase = new Tb_votacao()
             {
                 Fk_frasedoano = votacao.IdFrase,
                 Fk_usuario = _idUsuarioLogado,
-                Dh_inclusao= DateTime.Now
+                Dh_inclusao = DateTime.Now
             };
             _dbContext.Tb_votacao.Add(frase);
             _dbContext.SaveChanges();
@@ -84,6 +85,25 @@ namespace FrasesDoAnoApi.Dominio
             if (voto is not null)
                 throw new Exception("Voto já cadastrado.");
         }
+
+        public List<VotarResponse> ObterVotosFrase()
+        {
+            var query = (
+                         from fra in _dbContext.Tb_frasedoano
+                         join vot in _dbContext.Tb_votacao on fra.Pk_id equals vot.Fk_frasedoano into _vot
+                         from vot in _vot.DefaultIfEmpty()
+                         join usu in _dbContext.Tb_usuario on fra.Fk_owner equals usu.Pk_id into _usu
+                         from usu in _usu.DefaultIfEmpty()
+                         group new { fra, vot, usu } by new { fra.Pk_id } into _fra
+                         select new VotarResponse()
+                         {
+                             Frase = _fra.Max(m => m.fra.Ds_frase),
+                             Observacao = _fra.Max(m => m.fra.Ds_observacao),
+                             Autor = _fra.Max(m => m.usu.Ds_nome),
+                             QtdVotos = _fra.Count(c => c.vot != null),
+                             Pk_id = _fra.Key.Pk_id
+                         }).ToList();
+            return query;
+        }
     }
-    
 }

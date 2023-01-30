@@ -121,7 +121,8 @@ namespace FrasesDoAnoApi.Dominio
                 Ds_frase = cadastroFrase.Frase,
                 Ds_observacao = cadastroFrase.Observacao,
                 Dh_inclusao = DateTime.Now,
-                Tg_inativo = false
+                Tg_inativo = false,
+                Fk_owner = _idUsuarioLogado
             };
           
             _dbContext.Tb_frasedoano.Add(resposta);
