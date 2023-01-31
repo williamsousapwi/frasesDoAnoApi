@@ -99,6 +99,7 @@ namespace FrasesDoAnoApi.Dominio
                          join usu in _dbContext.Tb_usuario on fra.Fk_owner equals usu.Pk_id into _usu
                          from usu in _usu.DefaultIfEmpty()
                          group new { fra, vot, usu } by new { fra.Pk_id } into _fra
+                         orderby _fra.Count(c => c.vot != null) descending
                          select new VotarResponse()
                          {
                              Frase = _fra.Max(m => m.fra.Ds_frase),
