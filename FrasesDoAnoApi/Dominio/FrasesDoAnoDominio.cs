@@ -103,6 +103,11 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception($"Cód. não encontrado. Código: {id}");
             }
+            if (frases.Fk_owner != _idUsuarioLogado)
+            {
+                throw new Exception("Delete apenas frases de sua autoria");
+            }
+           
             _dbContext.Remove(frases);
             _dbContext.SaveChanges();
         }
@@ -116,6 +121,7 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception("A frase é obrigatória.");
             }
+
             var resposta = new Tb_frasedoano()
             {
                 Ds_frase = cadastroFrase.Frase,
@@ -141,6 +147,11 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception("Frase não encontrada, tente editar uma frase existente.");
             }
+            
+            if (dadosExistentes.Fk_owner != _idUsuarioLogado)
+            {
+                throw new Exception("Edite apenas frases de sua autoria");
+            }
 
             if (string.IsNullOrWhiteSpace(dadosExistentes.Ds_frase))
             {
@@ -154,11 +165,6 @@ namespace FrasesDoAnoApi.Dominio
    
             _dbContext.SaveChanges();   
         }
-
-       
-        
-        
-
 
     }
 }

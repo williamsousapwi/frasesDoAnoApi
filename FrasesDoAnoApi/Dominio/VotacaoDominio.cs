@@ -75,6 +75,7 @@ namespace FrasesDoAnoApi.Dominio
             {
                 throw new Exception($"Cód. não encontrado. Código: {id}");
             }
+         
             _dbContext.Remove(voto);
             _dbContext.SaveChanges();
         }
@@ -85,7 +86,10 @@ namespace FrasesDoAnoApi.Dominio
             if (voto is not null)
                 throw new Exception("Voto já cadastrado.");
         }
-
+        /// <summary>
+        /// Método para fazer a obtenção da contagem dos votos.
+        /// </summary>
+        /// <returns> Json com informações</returns>
         public List<VotarResponse> ObterVotosFrase()
         {
             var query = (

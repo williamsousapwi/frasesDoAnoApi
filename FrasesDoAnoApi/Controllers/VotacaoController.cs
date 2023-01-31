@@ -64,7 +64,10 @@ namespace FrasesDoAnoApi.Controllers
                 return BadRequest($"Erro ao deletar a frase. Detalhes: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Quantidade de votos por frase e detalhes da frase.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ranking")]
         public ActionResult<List<VotarResponse>> ContarVotos()
         {

@@ -13,7 +13,9 @@
         /// Observacao informada
         /// </summary>
         public string Observacao { get; set; } = ""; 
-
-
+        /// <summary>
+        /// Id do usuário
+        /// </summary>
+        public int IdUsuario { get; set; }
     }
 }

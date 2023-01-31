@@ -65,6 +65,11 @@
             Observacao informada
             </summary>
         </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.FraseRequest.IdUsuario">
+            <summary>
+            Id do usuário
+            </summary>
+        </member>
         <member name="T:FrasesDoAnoApi.Controllers.Modelos.FraseResponse">
             <summary>
             Resposta para o usuário
@@ -165,6 +170,36 @@
             id do fk_frasedoano
             </summary>
         </member>
+        <member name="T:FrasesDoAnoApi.Controllers.Modelos.VotarResponse">
+            <summary>
+            Classe de response
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarResponse.Id">
+            <summary>
+            Campo pk_id
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarResponse.Frase">
+            <summary>
+            Campo ds_frase
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarResponse.Observacao">
+            <summary>
+            Campo ds_observacao
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarResponse.Criador">
+            <summary>
+            Campo ds_nome da tb_usuario
+            </summary>
+        </member>
+        <member name="P:FrasesDoAnoApi.Controllers.Modelos.VotarResponse.QtdVotos">
+            <summary>
+            QtdVotos, count do pk_id dos votos
+            </summary>
+        </member>
         <member name="T:FrasesDoAnoApi.Controllers.UsuarioController">
             <summary>
              Class para o domínio
@@ -214,6 +249,12 @@
             </summary>
             <param name="id"></param>
             <returns>retorna cod. 200 se deletar.</returns>
+        </member>
+        <member name="M:FrasesDoAnoApi.Controllers.VotacaoController.ContarVotos">
+            <summary>
+            Quantidade de votos por frase e detalhes da frase.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FrasesDoAnoApi.Dados.Configuracao.DbContextSql">
             <summary>
@@ -464,6 +505,12 @@
             </summary>
             <param name="id"></param>
             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:FrasesDoAnoApi.Dominio.VotacaoDominio.ObterVotosFrase">
+            <summary>
+            Método para fazer a obtenção da contagem dos votos.
+            </summary>
+            <returns> Json com informações</returns>
         </member>
         <member name="T:FrasesDoAnoApi.Program">
             <summary>
